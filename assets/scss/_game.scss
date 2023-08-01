@@ -1,0 +1,26 @@
+#game-page {
+    p {
+        text-align: center;
+        font-size: 2rem;
+        width: 25rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        height: 5rem;
+        display: block;
+        line-height: 5rem;
+        border: 1px solid black;
+        margin: 15vh auto 4vh;
+    }
+
+    textarea {
+        width: 50%;
+        height: 6rem;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 6rem;
+        font-size: 4rem;
+        border: none;
+        resize: none;
+        display: block;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS-APP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head> 
+<body>
+    <div id="counter-page">
+        <div class="counter">
+            <span id="count" class="counter__number"></span>
+        </div>
+    </div>
+
+    <div id="welcome-page">
+        <h1 id="h1">Virtual keyboard Typing Game</h1>
+        <h3 id="h3">Click on the button to start the game</h3>
+        <ul class="radio-lists">
+            <li class="radio-item">
+                <label>
+                    <input type="radio" name="level" value="1" checked>
+                    level1
+                </label>
+            </li>
+            <li class="radio-item">
+                <label>
+                    <input type="radio" name="level" value="2">
+                    level2
+                </label>
+            </li>
+            <li class="radio-item">
+                <label>
+                    <input type="radio" name="level" value="3">
+                    level3
+                </label>
+            </li>
+        </ul>
+        <button id="start-button" class="start-button">
+            start
+        </button>
+    </div>
+    
+    <div id="game-page">
+        <p id="question" class="question"></p>
+        <textarea id="textarea" class="use-keyboard-input"></textarea>
+    </div>
+
+    <div id="result-page">
+        <h3>This is your result</h3>
+        <p id="result"></p>
+    </div>
+
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

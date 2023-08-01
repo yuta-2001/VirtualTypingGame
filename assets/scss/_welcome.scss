@@ -1,0 +1,40 @@
+#welcome-page {
+    h1 {
+        color: black;
+        text-align: center;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+        margin-top: 25vh;
+    }
+    
+    h3 {
+        color: black;
+        text-align: center;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .radio-lists {
+        display: flex;
+        width: 30rem;
+        font-size: 1.5rem;
+        list-style-type: none;
+        margin: 0 auto 2rem;
+        justify-content: space-between;
+        padding: 0;
+    }
+
+    .start-button {
+        font-size: 1.5rem;
+        width: 10rem;
+        height: 3rem;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 3rem;
+        border: 1px solid black;
+        background: white;
+        cursor: pointer;
+        margin-bottom: 3rem;
+        display: block;
+    }
+}
