@@ -2,8 +2,9 @@ import { keyboard } from './keyboard.js';
 
 class Game {
 
-    constructor(level) {
+    constructor(level, pageManager) {
         this.level = level;
+        this.pageManager = pageManager;
         this.questions = this.getQuestions();
         this.shuffleQuestions();
         this.currentQuestionIndex = 0;
@@ -54,10 +55,7 @@ class Game {
     endGame() {
         this.__setEndTime();
         const elapsedTime = this.getElapsedTime();
-        const resultPage = document.getElementById('result-page');
-        const gamePage = document.getElementById('game-page');
-        resultPage.style.display = 'block';
-        gamePage.style.display = 'none';
+        this.pageManager.showPage('resultPage');
 
         const result = document.getElementById('result');
         result.textContent = `${elapsedTime}s.`;

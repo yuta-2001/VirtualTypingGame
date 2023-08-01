@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", function () {
         pageManager.showPage('counterPage');
         const counter = new Counter(document.getElementById('count'), 3, () => {
             pageManager.showPage('gamePage');
-            const game = new Game(level);
+            const game = new Game(level, pageManager);
             keyboard.init(game);
         });
 
