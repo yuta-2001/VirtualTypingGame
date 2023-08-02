@@ -129,7 +129,7 @@ const keyboard = {
     _toggleCapsLock() {
         this.properties.capsLock = !this.properties.capsLock;
 
-        for (const key of this.elements.keys) {
+        for (let key of this.elements.keys) {
             if (key.childElementCount === 0) {
                 key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
             }
