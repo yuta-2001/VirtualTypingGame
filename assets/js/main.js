@@ -2,6 +2,7 @@ import { keyboard } from './modules/keyboard.js';
 import { Game } from './modules/game.js';
 import { PageManager } from './modules/pageManager.js';
 import { Counter } from './modules/counter.js';
+import { validation } from './modules/validation.js';
 
 window.addEventListener("DOMContentLoaded", function () {
     const pages = {
@@ -16,6 +17,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('start-button').addEventListener('click', () => {
         const level = document.querySelector('input[name="level"]:checked').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        if(!validation(name, email)) {
+            return;
+        };
+
         pageManager.showPage('counterPage');
         const counter = new Counter(document.getElementById('count'), 3, () => {
             pageManager.showPage('gamePage');
@@ -24,10 +32,10 @@ window.addEventListener("DOMContentLoaded", function () {
         });
 
         counter.start();
-    });
 
-    document.addEventListener('keydown', function(event) {
-        event.preventDefault();
+        document.addEventListener('keydown', function(event) {
+            event.preventDefault();
+        });
     });
 });
 
