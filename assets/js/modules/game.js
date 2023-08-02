@@ -11,15 +11,18 @@ class Game {
         this._setQuestion();
         this.startTime = Date.now();
         this.endTime = null;
+        this.misstypeQuestions = [];
     }
 
     checkAnswer(answer) {
-        if (answer === this.currentQuestion) {
+        if (answer === this.questions[this.currentQuestionIndex]) {
+            this.currentQuestionIndex++;
             if (this._setQuestion()) {
                 return true;
             }
         } else {
             alert("Wrong answer!");
+            this._recordMisstypeQuestion();
             return false;
         }
     }
@@ -46,9 +49,8 @@ class Game {
             this._endGame();
             return false;
         }
-
-        this.currentQuestion = this.questions[this.currentQuestionIndex++];
-        document.getElementById('question').textContent = this.currentQuestion;
+        document.getElementById('question').textContent = this.questions[this.currentQuestionIndex];
+        console.log(this.questions[this.currentQuestionIndex]);
         return true;
     }
 
@@ -59,6 +61,21 @@ class Game {
 
         const result = document.getElementById('result');
         result.textContent = `${elapsedTime}s.`;
+
+        const mistakes = document.getElementById('mistakes');
+
+        if (this.misstypeQuestions.length > 0) {
+            this.misstypeQuestions.forEach((questionIndex) => {
+                const question = document.createElement('li');
+                question.textContent = this.questions[questionIndex];
+                mistakes.appendChild(question);
+            });
+        } else {
+            const mistakeTitle = document.getElementById('mistake-title');
+            mistakeTitle.style.display = 'none';
+            mistakes.style.display = 'none';
+        }
+
         keyboard.close();
     }
 
@@ -71,6 +88,16 @@ class Game {
 
     _setEndTime() {
         this.endTime = Date.now();
+    }
+
+    _recordMisstypeQuestion() {
+        if (this.misstypeQuestions.includes(this.currentQuestionIndex) === false) {
+            this.misstypeQuestions.push(this.currentQuestionIndex);
+        }
+    }
+
+    _getMisstypeQuestions() {
+        return this.misstypeQuestions;
     }
 }
 
