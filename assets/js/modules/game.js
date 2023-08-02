@@ -1,4 +1,5 @@
 import { keyboard } from './keyboard.js';
+import { ScoreManager } from './scoreManager.js';
 
 class Game {
 
@@ -62,6 +63,16 @@ class Game {
         const result = document.getElementById('result');
         result.textContent = `${elapsedTime}s.`;
 
+        ScoreManager.setScores(elapsedTime);
+        const ranking = ScoreManager.getScores();
+
+        const scoreList = document.getElementById('score-list');
+        ranking.forEach((time, index) => {
+            const scoreItem = document.createElement('li');
+            scoreItem.textContent = `${index+1} place: ${time}s.`;
+            scoreList.appendChild(scoreItem);
+        });
+
         const mistakes = document.getElementById('mistakes');
 
         if (this.misstypeQuestions.length > 0) {
@@ -96,9 +107,6 @@ class Game {
         }
     }
 
-    _getMisstypeQuestions() {
-        return this.misstypeQuestions;
-    }
 }
 
 export { Game };
