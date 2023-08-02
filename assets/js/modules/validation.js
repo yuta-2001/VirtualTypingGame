@@ -1,4 +1,9 @@
-export { validate, validationRules };
+export { currentErrors };
+
+const currentErrors = {
+    name: 'Name is required.',
+    email: 'Email is required.',
+};
 
 const validationRules = {
     name: function(value) {
@@ -16,12 +21,26 @@ const validationRules = {
 };
 
 const validate = (field) => {
-    var value = document.getElementById(field).value;
-    var error = validationRules[field](value);
+    let value = document.getElementById(field).value;
+    let error = validationRules[field](value);
   
     // エラーメッセージの表示または削除
     document.getElementById(field + '-error').innerText = error;
   
     return error;
+}
+
+for (let field in validationRules) {
+    document.getElementById(field).addEventListener('keyup', (function(field) {
+        return  function() {
+                    let error = validate(field);
+
+                    if (error) {
+                        currentErrors[field] = error;
+                    } else {
+                        delete currentErrors[field];
+                    }
+                };
+    })(field));
 }
 
