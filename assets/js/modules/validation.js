@@ -1,21 +1,27 @@
-export const validation = (name, email) => {
-    const namePattern = /^[a-zA-Z\s]+$/; 
-    const emailPattern = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+export { validate, validationRules };
 
-    if (name === '' || email === '') {
-        alert('Please enter your name and email');
-        return false;
+const validationRules = {
+    name: function(value) {
+      return value ? '' : 'Name is required.';
+    },
+    email: function(value) {
+      if (!value) {
+        return 'Email is required.';
+      }
+      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
+        return 'Email is not valid.';
+      }
+      return '';
     }
+};
 
-    if (!namePattern.test(name)) {
-        alert('Please enter a valid name');
-        return false;
-    }
-
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email');
-        return false;
-    }
-
-    return true;
+const validate = (field) => {
+    var value = document.getElementById(field).value;
+    var error = validationRules[field](value);
+  
+    // エラーメッセージの表示または削除
+    document.getElementById(field + '-error').innerText = error;
+  
+    return error;
 }
+

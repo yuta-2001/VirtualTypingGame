@@ -30,6 +30,11 @@ const keyboard = {
         this.game = game;
     },
 
+    close() {
+        this.properties.value = "";
+        this.elements.main.classList.add("keyboard--hidden");
+    },
+
     _createKeys() {
         const fragment = document.createDocumentFragment();
         const keyLayout = [
@@ -130,10 +135,5 @@ const keyboard = {
             }
         }
     },
-
-    close() {
-        this.properties.value = "";
-        this.elements.main.classList.add("keyboard--hidden");
-    }
 };
 

@@ -2,7 +2,7 @@ import { keyboard } from './modules/keyboard.js';
 import { Game } from './modules/game.js';
 import { PageManager } from './modules/pageManager.js';
 import { Counter } from './modules/counter.js';
-import { validation } from './modules/validation.js';
+import { validate, validationRules } from './modules/validation.js';
 
 window.addEventListener("DOMContentLoaded", function () {
     const pages = {
@@ -15,14 +15,31 @@ window.addEventListener("DOMContentLoaded", function () {
 
     pageManager.showPage('welcomePage');
 
+    let errors = {};
+    for (let field in validationRules) {
+        document.getElementById(field).addEventListener('keyup', (function(field) {
+            return  function() {
+                        let error = validate(field);
+
+                        if (error) {
+                            errors[field] = error;
+                        } else {
+                            delete errors[field];
+                        }
+                    };
+        })(field));
+    }
+
     document.getElementById('start-button').addEventListener('click', () => {
         const level = document.querySelector('input[name="level"]:checked').value;
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
 
-        if(!validation(name, email)) {
-            return;
-        };
+        // 全フィールドのバリデーション
+        for (let field in validationRules) {
+            if(validate(field)) {
+                alert('Please check your input.');
+                return;
+            };
+        }
 
         pageManager.showPage('counterPage');
         const counter = new Counter(document.getElementById('count'), 3, () => {
