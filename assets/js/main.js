@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function () {
     pageManager.showPage('welcomePage');
 
     document.getElementById('start-button').addEventListener('click', () => {
-        const level = document.querySelector('input[name="level"]:checked').value;
+        const level = document.querySelector('input[name="type"]:checked').value;
 
         // 全フィールドのバリデーション
         if (Object.keys(currentErrors).length > 0) {

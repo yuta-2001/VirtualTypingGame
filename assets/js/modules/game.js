@@ -3,8 +3,8 @@ import { ScoreManager } from './scoreManager.js';
 
 class Game {
 
-    constructor(level, pageManager) {
-        this.level = level;
+    constructor(type, pageManager) {
+        this.type = type;
         this.pageManager = pageManager;
         this.questions = this._getQuestions();
         this._shuffleQuestions();
@@ -29,12 +29,12 @@ class Game {
     }
 
     _getQuestions() {
-        if (this.level == 1) {
-            return ['a', 'b', 'c', 'e'];
-        } else if(this.level == 2) {
-            return ['aa', 'bb', 'cc', 'ee'];
+        if (this.type == 1) {
+            return ['PHP', 'JavaScript', 'GO', 'Python', 'Java'];
+        } else if(this.type == 2) {
+            return ['Svelte', 'React', 'Vue', 'Next', 'Nuxt'];
         } else {
-            return ['aaa', 'bbb', 'ccc', 'eee'];
+            return ['AWS', 'GCP', 'Azure', 'Heroku', 'Firebase'];
         }
     }
 
